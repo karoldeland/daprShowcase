@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <table class="table table-sm table-striped table-hover border-bottom text-left">
+        <thead>
+            <th>Name</th>
+            <th>Description</th>
+            <th></th>
+        </thead>
+        <tbody>
+            @{ foreach (var product in Model.Products)
+                {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>@product.Description</td>
+                        <td><a asp-controller="Home" asp-action="AddToCart" asp-route-productName="@product.Name">Add to cart</a></td>
+                    </tr>
+                } 
+             } 
+        </tbody>
+    </table>
+
+    <p>
+        @Model.Message
+    </p>
+</div>
