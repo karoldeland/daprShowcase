@@ -40,7 +40,7 @@ namespace Frontend.Controllers
         public async Task<IActionResult> AddToCart(string productName, 
                                                    [FromServices] DaprClient daprClient)
         {
-            await daprClient.InvokeMethodAsync("cart", "Cart", productName);            
+            await daprClient.InvokeMethodAsync("cart", "cart/add", productName);            
 
             var vm = new ProductsVM() { Products = _products, Message = @$"{productName} added." };
 

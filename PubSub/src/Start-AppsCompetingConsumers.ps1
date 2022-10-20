@@ -7,6 +7,6 @@ $Email2= "dapr.exe run --app-id email --app-port 5012 --dapr-http-port 3512 dotn
 
 
 
-Start-Process powershell.exe -argument "`$host.ui.RawUI.WindowTitle = 'Cart Service'; $Cart"
-Start-Process powershell.exe -argument "`$host.ui.RawUI.WindowTitle = 'Email Service Instance 1'; $Email1"
-Start-Process powershell.exe -argument "`$host.ui.RawUI.WindowTitle = 'Email Service Instance 2'; $Email2"
+Start-Process powershell.exe -argument "`$host.ui.RawUI.WindowTitle = 'Cart Service'; $Cart; Read-host"
+Start-Process powershell.exe -argument "`$host.ui.RawUI.WindowTitle = 'Email Service Instance 1'; $Email1;Read-host"
+Start-Process powershell.exe -argument "`$host.ui.RawUI.WindowTitle = 'Email Service Instance 2'; $Email2;Read-host"
