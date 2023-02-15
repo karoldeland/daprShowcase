@@ -1,0 +1,12 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: bearer-token
+spec:
+  type: middleware.http.bearer
+  version: v1
+  metadata:
+  - name: clientId
+    value: "cart"
+  - name: issuerURL
+    value: "https://localhost:5001"

@@ -1,0 +1,16 @@
+apiVersion: dapr.io/v1alpha1
+kind: Configuration
+metadata:
+  name: auth
+spec:
+  tracing:
+    samplingRate: "1" 
+    zipkin:
+      endpointAddress: http://localhost:9411/api/v2/spans
+  appHttpPipeline: # for outgoing http calls
+    handlers:
+      - name: bearer-token
+        type: middleware.http.bearer
+  features:
+    - name: App Middleware
+      enabled: true

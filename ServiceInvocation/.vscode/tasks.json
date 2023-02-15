@@ -1,0 +1,93 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "buildIdentityServer",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/IdentityServer/IdentityServer.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "buildFrontend",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Frontend/Frontend.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "buildCart",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Cart/Cart.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/Frontend/Frontend.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/Frontend/Frontend.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "appId": "frontend",
+            "appPort": 5002,
+            "httpPort": 3501,
+            "label": "dapr-debug-frontend",
+            "type": "dapr",
+            "dependsOn": "buildFrontend"
+        },
+        {
+            "appId": "cart",
+            "appPort": 5000,
+            "httpPort": 3500,
+            "label": "dapr-debug-cart",
+            "type": "dapr",
+            "dependsOn": "buildCart",
+            "componentsPath": "./dapr-config/",
+            "config": "./dapr-config/config.yaml"
+        },
+        {
+            "appId": "cart",
+            "label": "daprd-down-cart",
+            "type": "daprd-down"
+        },
+        {
+            "appId": "frontend",
+            "label": "daprd-down-frontend",
+            "type": "daprd-down"
+        }
+    ]
+}

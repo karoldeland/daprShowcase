@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Cart.Controllers
 {
-    [Route("[controller]")]
+    [Route("{controller}/{action}")]
     [ApiController]
     public class CartController : ControllerBase
     {
@@ -19,7 +19,6 @@ namespace Cart.Controllers
             Logger = logger;
         }
 
-        [HttpPost]
         public async Task Add([FromBody]string productName) => await Task.Run(() => Logger.LogInformation(productName));
 
     }

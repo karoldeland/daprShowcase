@@ -38,9 +38,11 @@ namespace Frontend.Controllers
 
         [Route("{controller}/{action}/{productName}")]
         public async Task<IActionResult> AddToCart(string productName, 
-                                                   [FromServices] DaprClient daprClient)
+                                                   [FromServices] DaprClient daprClient, 
+                                                   [FromServices] CartClient cartClient)
         {
-            await daprClient.InvokeMethodAsync("cart", "Cart", productName);            
+            //await daprClient.InvokeMethodAsync("cart", "cart/add", productName);
+            cartClient.AddToCart(productName);
 
             var vm = new ProductsVM() { Products = _products, Message = @$"{productName} added." };
 

@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Frontend
@@ -24,7 +26,15 @@ namespace Frontend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews()
-                .AddDapr();
+                .AddDapr();            
+
+            services.AddHttpClient<CartClient, CartClient>()
+                .ConfigurePrimaryHttpMessageHandler(
+                    () => new Dapr.Client.InvocationHandler()
+                    {
+                        DaprEndpoint = "http://localhost:3501",
+                        InnerHandler = new HttpClientHandler()
+                    });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
