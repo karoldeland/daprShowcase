@@ -1,0 +1,20 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: oauth
+spec:
+  type: middleware.http.oauth2clientcredentials
+  version: v1
+  metadata:
+  - name: clientId
+    value: "frontend"
+  - name: clientSecret
+    value: "secret"
+  - name: scopes
+    value: "cartApi"
+  - name: tokenURL
+    value: "https://localhost:5001/connect/token"
+  - name: headerName
+    value: "authorization"
+  - name: authStyle
+    value: 0

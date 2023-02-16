@@ -67,7 +67,9 @@
             "httpPort": 3501,
             "label": "dapr-debug-frontend",
             "type": "dapr",
-            "dependsOn": "buildFrontend"
+            "dependsOn": "buildFrontend",
+            "componentsPath": "./Frontend/dapr-config/",
+            "config": "./Frontend/dapr-config/config.yaml"
         },
         {
             "appId": "cart",
@@ -76,8 +78,8 @@
             "label": "dapr-debug-cart",
             "type": "dapr",
             "dependsOn": "buildCart",
-            "componentsPath": "./dapr-config/",
-            "config": "./dapr-config/config.yaml"
+            "componentsPath": "./Cart/dapr-config/",
+            "config": "./Cart/dapr-config/config.yaml"
         },
         {
             "appId": "cart",

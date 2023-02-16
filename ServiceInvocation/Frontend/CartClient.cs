@@ -56,7 +56,7 @@ namespace Frontend
 
         public async void AddToCart(string productName)
         {
-            await SetBearerToken();
+            //await SetBearerToken();
 
             await _client.PostAsJsonAsync("cart/add", productName);
         }
