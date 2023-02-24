@@ -9,7 +9,7 @@ This part of the repository is used to demo Dapr service invocation and F5 exper
 ### Install and initialize Dapr
 
 1. Install instructions here: https://docs.dapr.io/getting-started/install-dapr-cli/
-2. run `dapr init --version 1.9.6`
+2. run `dapr init`
 
 ### Install Consul
 
@@ -32,7 +32,3 @@ dotnet run --urls=https://localhost:5001/
 ## Run the demo
 
 Open VS Code and hit F5. You should use the `Frontend + Cart with Dapr` launch configuration.
-
-# Known issues
-
-1. Dapr 1.10.2 is not working with bearer middleware. Investigating. Stuck to 1.9.6.
