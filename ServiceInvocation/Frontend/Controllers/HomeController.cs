@@ -42,11 +42,16 @@ namespace Frontend.Controllers
                                                    [FromServices] CartClient cartClient)
         {
             //await daprClient.InvokeMethodAsync("cart", "cart/add", productName);
-            cartClient.AddToCart(productName);
+            var response = await cartClient.AddToCart(productName);
 
-            var vm = new ProductsVM() { Products = _products, Message = @$"{productName} added." };
+            if (response.IsSuccessStatusCode)
+            {
+                var vm = new ProductsVM() { Products = _products, Message = @$"{productName} added." };
 
-            return View("Index", vm);
+                return View("Index", vm);
+            }
+            else
+                return Error();            
         }
 
         public IActionResult Privacy()

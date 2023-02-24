@@ -62,24 +62,26 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "dapr-debug-frontend",
             "appId": "frontend",
             "appPort": 5002,
             "httpPort": 3501,
-            "label": "dapr-debug-frontend",
             "type": "dapr",
             "dependsOn": "buildFrontend",
             "componentsPath": "./Frontend/dapr-config/",
-            "config": "./Frontend/dapr-config/config.yaml"
+            "config": "./Frontend/dapr-config/config.yaml",
+            "logLevel": "debug"
         },
         {
-            "appId": "cart",
-            "appPort": 5000,
-            "httpPort": 3500,
             "label": "dapr-debug-cart",
+            "appId": "cart",
+            "appPort": 5003,
+            "httpPort": 3500,
             "type": "dapr",
             "dependsOn": "buildCart",
             "componentsPath": "./Cart/dapr-config/",
-            "config": "./Cart/dapr-config/config.yaml"
+            "config": "./Cart/dapr-config/config.yaml",
+            "logLevel": "debug"
         },
         {
             "appId": "cart",

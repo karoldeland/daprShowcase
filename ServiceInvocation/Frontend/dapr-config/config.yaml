@@ -11,6 +11,12 @@ spec:
     handlers:
       - name: oauth
         type: middleware.http.oauth2clientcredentials
-  features:
-    - name: App Middleware
-      enabled: true
+  nameResolution:
+    component: "consul"
+    configuration:
+      selfRegister: true
+      checks:
+        - name: "Dapr Health Status"
+          checkID: "daprHealth:${APP_ID}"
+          interval: "1s"
+          http: "http://${HOST_ADDRESS}:${DAPR_HTTP_PORT}/v1.0/healthz"

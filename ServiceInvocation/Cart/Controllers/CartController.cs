@@ -19,7 +19,8 @@ namespace Cart.Controllers
             Logger = logger;
         }
 
-        public async Task Add([FromBody]string productName) => await Task.Run(() => Logger.LogInformation(productName));
+        public async Task Add([FromBody]string productName) => 
+            await Task.Run(() => Logger.LogInformation(productName));
 
     }
 }

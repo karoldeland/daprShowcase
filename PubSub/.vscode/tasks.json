@@ -1,0 +1,80 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "buildCart",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/Cart/Cart.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "buildEmail",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/Email/Email.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "buildShipping",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/Shipping/Shipping.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "appId": "cart",
+            "appPort": 5010,
+            "grpcPort": 50001,
+            "label": "dapr-debug-cart",
+            "type": "dapr",
+            "dependsOn": "buildCart"
+        },
+        {
+            "appId": "cart",
+            "label": "daprd-down-cart",
+            "type": "daprd-down"
+        },
+        {
+            "appId": "email",
+            "appPort": 5011,
+            "label": "dapr-debug-email",
+            "type": "dapr",
+            "dependsOn": "buildEmail"
+        },
+        {
+            "appId": "email",
+            "label": "daprd-down-email",
+            "type": "daprd-down"
+        },
+        {
+            "appId": "shipping",
+            "appPort": 5012,
+            "label": "dapr-debug-shipping",
+            "type": "dapr",
+            "dependsOn": "buildShipping"
+        },
+        {
+            "appId": "shipping",
+            "label": "daprd-down-shipping",
+            "type": "daprd-down"
+        }
+    ]
+}

@@ -54,11 +54,11 @@ namespace Frontend
 
         }
 
-        public async void AddToCart(string productName)
+        public async Task<HttpResponseMessage> AddToCart(string productName)
         {
             //await SetBearerToken();
 
-            await _client.PostAsJsonAsync("cart/add", productName);
+            return await _client.PostAsJsonAsync("cart/add", productName);
         }
     }
 }

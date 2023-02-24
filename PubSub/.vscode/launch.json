@@ -5,53 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "IdentityServer",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "buildIdentityServer",
-            "program": "${workspaceFolder}/IdentityServer/bin/Debug/net6.0/IdentityServer.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/IdentityServer",
-            "stopAtEntry": false,
-            "serverReadyAction": {
-                "action": "openExternally",
-                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-            },
-            "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development",
-                "ASPNETCORE_URLS": "https://localhost:5001/"
-            },
-            "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
-            }
-        },
-        {
-            "name": "Frontend",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "buildFrontend",
-            "program": "${workspaceFolder}/Frontend/bin/Debug/net7.0/Frontend.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/Frontend",
-            "stopAtEntry": false,
-            "serverReadyAction": {
-                "action": "openExternally",
-                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-            },
-            "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development",
-                "ASPNETCORE_URLS": "http://localhost:5002/"
-            },
-            "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
-            }
-        },
-        {
             "name": "Cart",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "buildCart",
-            "program": "${workspaceFolder}/bin/Debug/net7.0/cart.dll",
+            "program": "${workspaceFolder}/src/Cart/bin/Debug/net7.0/Cart.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
@@ -61,20 +19,20 @@
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
-                "ASPNETCORE_URLS": "http://localhost:5000/"
+                "ASPNETCORE_URLS": "http://localhost:5010/"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
             }
         },
         {
-            "name": "Frontend with Dapr",
+            "name": "Email",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "dapr-debug-frontend",
-            "program": "${workspaceFolder}/Frontend/bin/Debug/net7.0/Frontend.dll",
+            "preLaunchTask": "buildEmail",
+            "program": "${workspaceFolder}/src/Email/bin/Debug/net7.0/Email.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Frontend",
+            "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
@@ -82,21 +40,41 @@
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
-                "ASPNETCORE_URLS": "http://localhost:5002/"
+                "ASPNETCORE_URLS": "http://localhost:5011/"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "Shipping",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "buildShipping",
+            "program": "${workspaceFolder}/src/Shipping/bin/Debug/net7.0/Shipping.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
             },
-            "postDebugTask": "daprd-down-frontend"
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://localhost:5012/"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
         },
         {
             "name": "Cart with Dapr",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "dapr-debug-cart",
-            "program": "${workspaceFolder}/Cart/bin/Debug/net7.0/Cart.dll",
+            "program": "${workspaceFolder}/src/Cart/bin/Debug/net7.0/Cart.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Cart",
+            "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
@@ -104,18 +82,62 @@
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
-                "ASPNETCORE_URLS": "http://localhost:5003/"
+                "ASPNETCORE_URLS": "http://localhost:5010/"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
             },
             "postDebugTask": "daprd-down-cart"
+        },
+        {
+            "name": "Email with Dapr",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "dapr-debug-email",
+            "program": "${workspaceFolder}/src/Email/bin/Debug/net7.0/Email.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://localhost:5011/"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            },
+            "postDebugTask": "daprd-down-email"
+        },
+        {
+            "name": "Shipping with Dapr",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "dapr-debug-shipping",
+            "program": "${workspaceFolder}/src/Shipping/bin/Debug/net7.0/Shipping.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://localhost:5012/"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            },
+            "postDebugTask": "daprd-down-shipping"
         }
     ],
     "compounds": [
         {
-          "name": "Frontend + Cart with Dapr",
-          "configurations": ["Cart with Dapr", "Frontend with Dapr"]
+          "name": "Everything",
+          "configurations": ["Cart with Dapr", "Shipping with Dapr", "Email with Dapr"]
         }
       ]
 }
