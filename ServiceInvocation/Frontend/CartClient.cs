@@ -56,6 +56,7 @@ namespace Frontend
 
         public async Task<HttpResponseMessage> AddToCart(string productName)
         {
+            // Commented because we don't need it anymore with Dapr. 
             //await SetBearerToken();
 
             return await _client.PostAsJsonAsync("cart/add", productName);
